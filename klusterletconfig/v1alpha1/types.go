@@ -61,6 +61,9 @@ type KlusterletConfigSpec struct {
 	// 2). Otherwise use the CA certificates from kube-root-ca.crt ConfigMap in the cluster namespace;
 	// +optional
 	HubKubeAPIServerCABundle []byte `json:"hubKubeAPIServerCABundle,omitempty"`
+
+	// +optional
+	PriorityBootstrapKubeconfigSecrets []corev1.ObjectReference `json:"priorityBootstrapKubeconfigSecrets,omitempty"`
 }
 
 // KlusterletConfigStatus defines the observed state of KlusterletConfig.

@@ -6,6 +6,7 @@
 package v1alpha1
 
 import (
+	corev1 "k8s.io/api/core/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	v1 "open-cluster-management.io/api/operator/v1"
 )
@@ -89,6 +90,11 @@ func (in *KlusterletConfigSpec) DeepCopyInto(out *KlusterletConfigSpec) {
 	if in.HubKubeAPIServerCABundle != nil {
 		in, out := &in.HubKubeAPIServerCABundle, &out.HubKubeAPIServerCABundle
 		*out = make([]byte, len(*in))
+		copy(*out, *in)
+	}
+	if in.PriorityBootstrapKubeconfigSecrets != nil {
+		in, out := &in.PriorityBootstrapKubeconfigSecrets, &out.PriorityBootstrapKubeconfigSecrets
+		*out = make([]corev1.ObjectReference, len(*in))
 		copy(*out, *in)
 	}
 	return
